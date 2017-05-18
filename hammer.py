@@ -143,7 +143,7 @@ def update_generation(assignments, scores):
 
 
 
-# initialize first generation
+# initialize first generation with uniformly-random assignments
 def mk_assignment():
     return np.random.permutation(courses)
 
