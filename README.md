@@ -9,7 +9,7 @@ i assume a constant mapping between rank and significance to the fit (eg, https:
 this is a surprisingly difficult problem, but i think the genetic algorithm solves it well!
 
 ## technical details
-really the only interesting detail here is that there's a constraint that pairings must be *valid*; i.e., each couse *must* have a student assigned.
+really the only interesting detail here is that there's a constraint that pairings must be *valid*; i.e., each course must have a student assigned.
 so i use a cyclic crossover for the crossover function, and i use a swap for the mutation function.
 everything else is pretty vanilla, and i haven't yet tweaked any of the parameters!
 
