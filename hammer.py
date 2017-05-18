@@ -1,5 +1,17 @@
 import numpy as np
 
+# utility functions
+def not_contains(a, elem):
+    return np.intersect1d(a, elem).shape[0] == 0
+
+# difference two lists
+def diff(first, second):
+    second = set(second)
+    return [item for item in first if item not in second]
+
+
+
+
 # mock up some synthetic data to work with
 #
 # TODO: really want to be able to import this from some CSV file
@@ -32,21 +44,15 @@ weights = [ 0.75, 0.17, 0.06, 0.02, 0.0 ]
 # TODO: maybe allow students to specify their own weights
 #       alternatively, tweak weights so everyone gets at least their
 #       third choice... i think this is better!
-weights = [ 0.75, 0.17, 0.08, -nstudents, -10*nstudents ]
+bad = -10.0 * nstudents
+weights = [ 0.75, 0.17, 0.08, -nstudents, bad ]
 
-bad = -100.0
 
 def happiness(student, course):
-    ind = np.intersect1d(student, course)
-    if ind.shape[0] == 0:
+    if not_contains(student, course):
         return bad
 
     return weights[np.where(student == course)[0][0]]
-
-# difference two lists
-def diff(first, second):
-    second = set(second)
-    return [item for item in first if item not in second]
 
 def total_happiness(students, assignments):
     scores = [ happiness(s, a) for s, a in zip(students, assignments) ]
@@ -56,18 +62,18 @@ def total_happiness(students, assignments):
 
 
 
-# crossover
-def contains(a, elem):
-    return np.intersect1d(a, elem).shape[0] == 0
-
+# genetic crossover
+# - need to be careful that, if given two valid parents, this produces
+#   two valid children.  use the cyclic crossover for this.
 def cyclic_crossover(p1, p2):
     # initialize children to -1
+    # TODO: better way to do this?
     c1 = np.arange(np.shape(p1)[0]) * 0 - 1
     c2 = np.arange(np.shape(p1)[0]) * 0 - 1
 
     # loop until we reach a closed cycle, filling c1 from p1
     i = 0
-    while(contains(c1, p1[i])):
+    while(not_contains(c1, p1[i])):
         c1[i] = p1[i]
         i = np.where(p1==p2[i])[0][0]
 
@@ -85,6 +91,8 @@ def cyclic_crossover(p1, p2):
 
 
 # mutation
+# - again, need to make sure this keeps the assignments valid.  do
+#   this by swapping assignments, rather than randomly assigning
 def mutate(p):
     # swap two randomly-selected elements
     l = np.shape(p)[0]
@@ -99,12 +107,14 @@ def mutate(p):
 
 # update a generation of assignments
 def update_generation(assignments, scores):
-    # sort parents by their score value
-    score_inds    = scores.argsort()
-    scores = scores[score_inds[::-1]]
+    # first, sort possible assignments by their score value
+    score_inds  = scores.argsort()
+    scores      = scores[score_inds[::-1]]
     assignments = assignments[score_inds[::-1]]
 
     # replace the weakest half with crossover from the strongest half
+
+    # probability for picking "parent" assignments
     prob = scores
     prob[num_parents/2:] = 0.0
     prob = prob - np.min(prob)
@@ -112,8 +122,9 @@ def update_generation(assignments, scores):
 
     inds = np.arange(num_parents)
 
+    # now, do the replacement
     for i in range(num_parents/2, num_parents, 2):
-        # find two parents, weighted by their fitness
+        # find two "parent" assignments, weighted by their fitness
         ps = np.random.choice(inds, size=2, replace=False, p=prob)
         p1 = assignments[ps[0]]
         p2 = assignments[ps[1]]
@@ -123,7 +134,7 @@ def update_generation(assignments, scores):
         assignments[i  ] = c1
         assignments[i+1] = c2
 
-    # mutate 10% of the population
+    # finally, mutate 10% of the population to jump out of local minima
     idx = np.random.choice(np.arange(num_parents), size=num_parents/10, replace=False)
     for i in idx:
         assignments[i] = mutate(assignments[i])
