@@ -1,0 +1,19 @@
+| student           | assignment |    | benchmark  |    |
+|-------------------+------------+----+------------+----|
+| Austin, Celena    | Engl 10    | A  | Engl 15    | A  |
+| Santos, Celena    | Engl 25    | A  | Engl 101   | B  |
+| Warren, Starr     | Engl 103A  | AA | Engl 103A  | AA |
+| Hodge, Sylvie     | Engl 15    | B  | Engl 15    | B  |
+| Rodriquez, Yuki   | Engl 10    | A  | Engl 10    | A  |
+| Schmidt, Lecia    | ENGL 101   | AA | Engl 101   | AA |
+| Bradley, Madeline | Engl 133SO | AA | Engl 133SO | AA |
+| Phillips, Gwyneth | Engl 133SO | A  | Engl 133SO | A  |
+| Graves, Celena    | Engl 22    | AA | Engl 22    | AA |
+| Phelps, Briana    | ENGL 101   | AA | Engl 101   | AA |
+| England, Hollie   | ENGL 101   | B  | Engl 10    | B  |
+| Lowery, Inga      | Engl 25    | AA | none       |    |
+| Bullock, Isidro   | Engl 133SO | AA | Engl 133SO | AA |
+| Sweeney, Sandee   | Engl 25    | AA | none       |    |
+| Goff, Lean        | Engl 103A  | AA | Engl 103A  | AA |
+| Tran, Adriane     | Engl 133SO | AA | Engl 133SO | AA |
+| Battle, Loretta   | Engl 15    | B  | none       |    |

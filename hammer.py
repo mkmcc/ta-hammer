@@ -1,34 +1,67 @@
 import numpy as np
+import sys
 
 ################################################################################
-## import course and student data
-
-# import course list
-course_names = np.loadtxt('courses.dat',
-                          usecols=(0,),
-                          dtype=np.dtype((str, 35)))
-# convert to integer format
-courses = np.arange(len(course_names))
+## utility functions
+def not_contains(a, elem):
+    return np.intersect1d(a, elem).shape[0] == 0
+################################################################################
 
 
-# import student preferences
-students_str = np.loadtxt('students.csv',
-                           dtype=np.dtype((str, 35)),
-                           delimiter=',')
 
-# split names from data
-student_names = students_str[:,:2]
-students_str  = students_str[:,2:]
+################################################################################
+## import student preference data
 
+data = np.loadtxt('students.csv',
+                  delimiter=',',
+                  dtype=np.dtype((str, 256)))
 
-# convert student preference data to integer format
-def course_name_to_number(name):
-    return np.where(course_names == name)[0][0]
+header        = data[0]
+nassignments  = data[1]
+data          = data[2:]
 
-vfunc = np.vectorize(course_name_to_number)
+course_names  = header[2:]
+nassignments  = nassignments[2:]
+student_names = data[:,0:2]
+data          = data[:,2:]
 
-students = np.asarray([ vfunc(s) for s in students_str ])
+# duplicate
+nassignments = nassignments.astype(np.int)
 
+if np.sum(nassignments) != data.shape[0]:
+    print "Number of students {0} not equal to number of assignments {1}".format(np.sum(nassignments), data.shape[0])
+    sys.exit(1)
+
+cols = np.transpose(data)
+data = [ ([cols[i].tolist()] * nassignments[i]) for i in range(cols.shape[0]) ]
+data = np.transpose(np.vstack(data))
+
+## convert Andrea's codes to numeric values (TODO: tweak!)
+pref_mapping = {
+    'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
+    'X'   :    0.0,
+    'C'   :    0.06,
+    'B'   :    0.17,
+    'A'   :    0.75,
+    'AA'  :    1.5     # pretty please? (eg, had bad luck last time; deserve a bump)
+}
+
+def score_to_score(letter):
+    return pref_mapping[letter]
+
+def score_to_score_inv(score):
+    key = next(key for key, value in pref_mapping.items() if value == score)
+    return key
+
+vfunc = np.vectorize(score_to_score)
+student_preferences = vfunc(data)
+courses = np.arange(data.shape[0])
+
+course_names2 = [ ([course_names[i]] * nassignments[i]) for i in range(cols.shape[0]) ]
+course_names2 = reduce(lambda x,y: x+y, course_names2)
+course_names = np.asarray(course_names2)
+
+## end import data
 ################################################################################
 
 
@@ -36,35 +69,14 @@ students = np.asarray([ vfunc(s) for s in students_str ])
 ################################################################################
 ## genetic optimization algorithm
 
-# utility functions
-def not_contains(a, elem):
-    return np.intersect1d(a, elem).shape[0] == 0
-
-
-
-# happiness function
-#
-# https://en.wikipedia.org/wiki/Preference-rank_translation
-weights = [ 0.75, 0.17, 0.06, 0.02, 0.0 ]
-# TODO: maybe allow students to specify their own weights
-#       alternatively, tweak weights so everyone gets at least their
-#       third choice... i think this is better!
-nstudents = students.shape[0]
-bad = -10.0 * nstudents
-#weights = [ 0.75, 0.17, 0.08, -nstudents, bad ]
-
-
 def happiness(student, course):
-    if not_contains(student, course):
-        return bad
-
-    return weights[np.where(student == course)[0][0]]
+    return student[course]
 
 def total_happiness(students, assignments):
     scores = [ happiness(s, a) for s, a in zip(students, assignments) ]
     student_happiness = np.sum(np.asarray(scores)) # todo: try 1/sum(1/scores)
 
-    return student_happiness / nstudents
+    return student_happiness / students.shape[0]
 
 
 
@@ -153,10 +165,10 @@ def update_generation(assignments, scores):
 def mk_assignment():
     return np.random.permutation(courses)
 
-num_parents = 16000
+num_parents = 1000 # 16000
 assignments = np.asarray([ mk_assignment() for i in range(num_parents) ])
 
-scores = np.array([total_happiness(students, assignment) for assignment in assignments])
+scores = np.array([total_happiness(student_preferences, assignment) for assignment in assignments])
 
 print "max initial happiness: {0}".format(np.max(scores))
 print "min initial happiness: {0}".format(np.min(scores))
@@ -166,7 +178,7 @@ print "min initial happiness: {0}".format(np.min(scores))
 # run the simulation for 100 generations or until converged
 for gen in range(1, 100):
     assignments = update_generation(assignments, scores)
-    scores = np.array([total_happiness(students, assignment) for assignment in assignments])
+    scores = np.array([total_happiness(student_preferences, assignment) for assignment in assignments])
 
     print "generation: %3d; max: %6.3f; median: %6.3f" % (gen, np.max(scores), np.median(scores))
 
@@ -183,11 +195,11 @@ score_inds    = scores.argsort()
 scores = scores[score_inds[::-1]]
 assignments = assignments[score_inds[::-1]]
 
-h = [ happiness(s, a) for s, a in zip(students, assignments[0]) ]
+h = [ happiness(s, a) for s, a in zip(student_preferences, assignments[0]) ]
 c_names = np.asarray(course_names)[assignments[0]]
 s_names = np.asarray(student_names)
 
-pretty = [ "{0}: {1} ({2})".format(s, c, hh) for s, c, hh in zip(s_names, c_names, h) ]
+pretty = [ "{0}: {1} ({2})".format(s, c, score_to_score_inv(hh)) for s, c, hh in zip(s_names, c_names, h) ]
 print " "
 print "best pairing:"
 for p in pretty:

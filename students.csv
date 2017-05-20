@@ -1,18 +1,19 @@
-Last Name,First Name,Engl 10 (2),Engl 15 (2),Engl 22 (1),Engl 25 (3),ENGL 101 (3),Engl 103A (2),Engl 133SO (4),Compare
-Austin,Celena,A,A,X,B,C,B,X,Engl 15
-Santos,Celena,X,C,X,A,B,B,B,Engl 101
-Warren,Starr,X,C,C,C,C,AA,C,Engl 103A
-Hodge,Sylvie,XXX,B,B,A,X,C,C,Engl 15
-Rodriquez,Yuki,A,C,C,C,X,B,C,Engl 10
-Schmidt,Lecia,C,B,X,A,AA,B,A,Engl 101
-Bradley,Madeline,X,C,B,C,X,A,AA,Engl 133SO
-Phillips,Gwyneth,B,C,AA,B,X,C,A,Engl 133SO
-Graves,Celena,B,B,AA,C,C,C,B,Engl 22
-Phelps,Briana,C,B,X,C,AA,X,X,Engl 101
-England,Hollie,B,C,AA,A,B,B,B,Engl 10
-Lowery,Inga,B,C,C,AA,X,C,C,
-Bullock,Isidro,C,B,C,C,X,C,AA,Engl 133SO
-Sweeney,Sandee,B,C,C,AA,X,A,X,
-Goff,Lean,C,X,C,X,X,AA,A,Engl 103A
-Tran,Adriane,C,X,C,C,X,A,AA,Engl 133SO
-Battle,Loretta,C,B,C,X,B,C,A,
+Last Name,First Name,Engl 10,Engl 15,Engl 22,Engl 25,ENGL 101,Engl 103A,Engl 133SO
+TA slots,,2,2,1,3,3,2,4
+Austin,Celena,A,A,X,B,C,B,X
+Santos,Celena,X,C,X,A,B,B,B
+Warren,Starr,X,C,C,C,C,AA,C
+Hodge,Sylvie,XXX,B,B,A,X,C,C
+Rodriquez,Yuki,A,C,C,C,X,B,C
+Schmidt,Lecia,C,B,X,A,AA,B,A
+Bradley,Madeline,X,C,B,C,X,A,AA
+Phillips,Gwyneth,B,C,AA,B,X,C,A
+Graves,Celena,B,B,AA,C,C,C,B
+Phelps,Briana,C,B,X,C,AA,X,X
+England,Hollie,B,C,AA,A,B,B,B
+Lowery,Inga,B,C,C,AA,X,C,C
+Bullock,Isidro,C,B,C,C,X,C,AA
+Sweeney,Sandee,B,C,C,AA,X,A,X
+Goff,Lean,C,X,C,X,X,AA,A
+Tran,Adriane,C,X,C,C,X,A,AA
+Battle,Loretta,C,B,C,X,B,C,A
