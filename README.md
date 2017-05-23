@@ -65,9 +65,8 @@ student-10: course-6  (1st choice)
 
 data from =test-data/students-fall.org=
 
-|-----------+----------+-----------+--------+-----------+------|
 |           |          | benchmark | andrea | pref-rank | evil |
-|-----------+----------+-----------+--------+-----------+------|
+| --------- | -------- |:---------:|:------:|:---------:|:----:|
 | Austin    | Celena   | A         | A      | A         | C    |
 | Santos    | Celena   | B         | B      | A         | C    |
 | Warren    | Starr    | AA        | AA     | AA        | C    |
@@ -85,7 +84,6 @@ data from =test-data/students-fall.org=
 | Goff      | Lean     | AA        | AA     | AA        | C    |
 | Tran      | Adriane  | AA        | AA     | AA        | C    |
 | Battle    | Loretta  |           | B      | B         | C    |
-|-----------+----------+-----------+--------+-----------+------|
 
 the =pref-rank= and =andrea= models perform similarly, and marginally
 better than the benchmark
