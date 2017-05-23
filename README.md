@@ -6,7 +6,7 @@ this is a simple genetic algorithm for optimizing TA/course pairings.
 students each give an ordered list of preferences for their courses, and this program attempts to find the optimal pairing.
 
 the program optimizes 'happiness' inferred from students' ranked preferences (https://en.wikipedia.org/wiki/Preference-rank_translation).
-different models are implemented in the =models/= directory, and a comparison of results can be found in =test-results/compare.org=
+different models are implemented in the `models/` directory, and a comparison of results can be found in `test-results/compare.org`
 
 this is a surprisingly difficult problem, but i think the genetic algorithm solves it well!
 
@@ -63,7 +63,7 @@ student-10: course-6  (1st choice)
 
 ## comparison of different happiness models on real-world data
 
-data from =test-data/students-fall.org=
+data from `test-data/students-fall.org`
 
 |           |          | benchmark | andrea | pref-rank | evil |
 | --------- | -------- |:---------:|:------:|:---------:|:----:|
@@ -85,5 +85,4 @@ data from =test-data/students-fall.org=
 | Tran      | Adriane  | AA        | AA     | AA        | C    |
 | Battle    | Loretta  |           | B      | B         | C    |
 
-the =pref-rank= and =andrea= models perform similarly, and marginally
-better than the benchmark
+the `pref-rank` and `andrea` models perform similarly, and marginally better than the benchmark
