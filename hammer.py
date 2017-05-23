@@ -244,7 +244,7 @@ h = [ happiness(s, a) for s, a in zip(student_preferences, assignments[0]) ]
 c_names = np.asarray(course_names)[assignments[0]]
 s_names = np.asarray(student_names)
 
-pretty = [ "{0}: {1} ({2})".format(s, c, score_to_score_inv(hh)) for s, c, hh in zip(s_names, c_names, h) ]
+pretty = [ "{0: <24}: {1: <12} ({2})".format(s, c, score_to_score_inv(hh)) for s, c, hh in zip(s_names, c_names, h) ]
 print " "
 print "best pairing:"
 for p in pretty:

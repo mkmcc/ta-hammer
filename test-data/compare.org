@@ -1,0 +1,54 @@
+test results comparing different happiness models:
+
+
+students-fall.csv
+|-----------+----------+------------+--------+-----------+------|
+|           |          |            | andrea | pref-rank | evil |
+|-----------+----------+------------+--------+-----------+------|
+| Austin    | Celena   | Engl 15    | A      | A         | C    |
+| Santos    | Celena   | ENGL 101   | B      | A         | C    |
+| Warren    | Starr    | Engl 103A  | AA     | AA        | C    |
+| Hodge     | Sylvie   | Engl 25    | A      | B         | C    |
+| Rodriquez | Yuki     | Engl 10    | A      | A         | C    |
+| Schmidt   | Lecia    | ENGL 101   | AA     | AA        | C    |
+| Bradley   | Madeline | Engl 133SO | AA     | AA        | C    |
+| Phillips  | Gwyneth  | Engl 133SO | A      | A         | C    |
+| Graves    | Celena   | Engl 10    | B      | B         | C    |
+| Phelps    | Briana   | ENGL 101   | AA     | AA        | C    |
+| England   | Hollie   | Engl 22    | AA     | AA        | C    |
+| Lowery    | Inga     | Engl 25    | AA     | AA        | C    |
+| Bullock   | Isidro   | Engl 133SO | AA     | AA        | C    |
+| Sweeney   | Sandee   | Engl 25    | AA     | AA        | C    |
+| Goff      | Lean     | Engl 103A  | AA     | AA        | C    |
+| Tran      | Adriane  | Engl 133SO | AA     | AA        | C    |
+| Battle    | Loretta  | Engl 15    | B      | B         | C    |
+|-----------+----------+------------+--------+-----------+------|
+
+
+
+students-winter.csv 
+|----------+--------------+-----------+--------+-----------+------|
+|          |              |           | andrea | pref-rank | evil |
+|----------+--------------+-----------+--------+-----------+------|
+| Rush     | Cheri        | Engl 193  | A      | A         | C    |
+| Adkins   | Velvet       | Engl 104B | A      | C         | C    |
+| Vasquez  | Lean         | Engl 104B | AA     | AA        | C    |
+| Gamble   | Seymour      | Engl 18   | A      | A         | C    |
+| Mccarthy | Phebe        | Engl 10   | A      | A         | C    |
+| Tyler    | Cheri        | Engl 102  | AA     | AA        | B    |
+| Sheppard | Isidro       | Engl 102  | B      | C         | C    |
+| Banks    | Adriane      | Engl 193  | A      | A         | C    |
+| Avery    | Sylvie       | Engl 104B | A      | C         | C    |
+| Watson   | Britt        | Engl 18   | A      | A         | C    |
+| Allen    | Etha Charles | Engl 105A | B      | A         | C    |
+| Morgan   | Sydney       | Engl 104B | AA     | AA        | C    |
+| Hill     | Sylvie       | Engl 10   | A      | A         | C    |
+| Mathews  | Yuki         | Engl 193  | B      | AA        | C    |
+| Church   | Ermelinda    | Engl 102  | AA     | AA        | C    |
+| Holt     | Lean         | Engl 105A | A      | A         | A    |
+| Wilder   | Luther       | Engl 102  | AA     | AA        | C    |
+| Winters  | Lecia        | Engl 10   | A      | AA        | C    |
+| Tate     | Ermelinda    | Engl 105A | B      | A         | C    |
+|----------+--------------+-----------+--------+-----------+------|
+
+Lean Holt can't lose!
