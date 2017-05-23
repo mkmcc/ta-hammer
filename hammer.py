@@ -114,8 +114,8 @@ def cyclic_crossover(p1, p2):
 def mutate(p):
     # swap two randomly-selected elements
     l = np.shape(p)[0]
-    ii = np.random.randint(low=0, high=l-1, size=2)
     tmp = p[ii[0]]
+    ii = np.random.randint(low=0, high=l, size=2)
     p[ii[0]] = p[ii[1]]
     p[ii[1]] = tmp
 
