@@ -1,5 +1,36 @@
+#!/usr/bin/env python
+
 import numpy as np
 import sys
+
+from optparse import OptionParser
+
+
+
+################################################################################
+## parse command line options
+
+usage = "usage: %prog -f student-preferences.csv"
+parser = OptionParser(usage)
+
+parser.add_option("-f", "--file",
+                  action="store", type="string", dest="filename",
+                  help="read data from FILENAME")
+
+parser.add_option("-v", "--verbose",
+                  action="store_true", dest="verbose")
+
+(options, args) = parser.parse_args(sys.argv)
+
+if len(args) != 1:
+    parser.error("incorrect number of arguments")
+if options.verbose:
+    print("reading %s..." % options.filename)
+
+##
+################################################################################
+
+
 
 ################################################################################
 ## utility functions
@@ -11,8 +42,9 @@ def not_contains(a, elem):
 
 ################################################################################
 ## import student preference data
+## TODO: this is fragile, and assumes correct input
 
-data = np.loadtxt('students.csv',
+data = np.loadtxt(options.filename,
                   delimiter=',',
                   dtype=np.dtype((str, 256)))
 
