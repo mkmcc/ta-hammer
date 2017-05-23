@@ -85,4 +85,5 @@ data from `test-data/students-fall.org`
 | Tran      | Adriane  | AA        | AA     | AA        | C    |
 | Battle    | Loretta  |           | B      | B         | C    |
 
-the `pref-rank` and `andrea` models perform similarly, and marginally better than the benchmark
+the `pref-rank` and `andrea` models perform similarly, and marginally better than the benchmark.
+the `evil` model is sufficiently nefarious
