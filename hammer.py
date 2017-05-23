@@ -57,7 +57,8 @@ nassignments  = nassignments[2:]
 student_names = data[:,0:2]
 data          = data[:,2:]
 
-# duplicate
+
+# duplicate course columns by the number of TA slots for that course
 nassignments = nassignments.astype(np.int)
 
 if np.sum(nassignments) != data.shape[0]:
@@ -68,14 +69,16 @@ cols = np.transpose(data)
 data = [ ([cols[i].tolist()] * nassignments[i]) for i in range(cols.shape[0]) ]
 data = np.transpose(np.vstack(data))
 
+
 ## convert Andrea's codes to numeric values (TODO: tweak!)
 pref_mapping = {
     'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
-    'X'   :    0.0,
-    'C'   :    0.06,
+    'X'   :  -10.0,
+    'C'   :   -5.0,
     'B'   :    0.17,
     'A'   :    0.75,
-    'AA'  :    1.5     # pretty please? (eg, had bad luck last time; deserve a bump)
+    'AA'  :    1.5,    # pretty please? (eg, had bad luck last time; deserve a bump)
+    'AAA' :  100.0     # absolutely guaranteed
 }
 
 def score_to_score(letter):
@@ -93,7 +96,7 @@ course_names2 = [ ([course_names[i]] * nassignments[i]) for i in range(cols.shap
 course_names2 = reduce(lambda x,y: x+y, course_names2)
 course_names = np.asarray(course_names2)
 
-## end import data
+## end import student preference data
 ################################################################################
 
 
@@ -106,7 +109,7 @@ def happiness(student, course):
 
 def total_happiness(students, assignments):
     scores = [ happiness(s, a) for s, a in zip(students, assignments) ]
-    student_happiness = np.sum(np.asarray(scores)) # todo: try 1/sum(1/scores)
+    student_happiness = np.sum(np.asarray(scores))
 
     return student_happiness / students.shape[0]
 
@@ -146,8 +149,9 @@ def cyclic_crossover(p1, p2):
 def mutate(p):
     # swap two randomly-selected elements
     l = np.shape(p)[0]
-    tmp = p[ii[0]]
     ii = np.random.randint(low=0, high=l, size=2)
+
+    tmp      = p[ii[0]]
     p[ii[0]] = p[ii[1]]
     p[ii[1]] = tmp
 
