@@ -4,7 +4,9 @@ when the only tool you have is a hammer...
 ## about
 this is a simple genetic algorithm for optimizing TA/course pairings.
 students each give an ordered list of preferences for their courses, and this program attempts to find the optimal pairing.
-i assume a constant mapping between rank and significance to the fit (eg, https://en.wikipedia.org/wiki/Preference-rank_translation), but this could be easily generalized if needed
+
+the program optimizes 'happiness' inferred from students' ranked preferences (https://en.wikipedia.org/wiki/Preference-rank_translation).
+different models are implemented in the =models/= directory, and a comparison of results can be found in =test-results/compare.org=
 
 this is a surprisingly difficult problem, but i think the genetic algorithm solves it well!
 
@@ -13,7 +15,7 @@ really the only interesting detail here is that there's a constraint that pairin
 so i use a cyclic crossover for the crossover function, and i use a swap for the mutation function.
 everything else is pretty vanilla, and i haven't yet tweaked any of the parameters!
 
-## example usage
+## example usage with randomly-generated data
 ```
 courses:
 [0 1 2 3 4 5 6 7 8 9]
@@ -59,3 +61,31 @@ student-9:  course-7  (2nd choice)
 student-10: course-6  (1st choice)
 ```
 
+## comparison of different happiness models on real-world data
+
+data from =test-data/students-fall.org=
+
+|-----------+----------+-----------+--------+-----------+------|
+|           |          | benchmark | andrea | pref-rank | evil |
+|-----------+----------+-----------+--------+-----------+------|
+| Austin    | Celena   | A         | A      | A         | C    |
+| Santos    | Celena   | B         | B      | A         | C    |
+| Warren    | Starr    | AA        | AA     | AA        | C    |
+| Hodge     | Sylvie   | B         | A      | B         | C    |
+| Rodriquez | Yuki     | A         | A      | A         | C    |
+| Schmidt   | Lecia    | AA        | AA     | AA        | C    |
+| Bradley   | Madeline | AA        | AA     | AA        | C    |
+| Phillips  | Gwyneth  | A         | A      | A         | C    |
+| Graves    | Celena   | AA        | B      | B         | C    |
+| Phelps    | Briana   | AA        | AA     | AA        | C    |
+| England   | Hollie   | B         | AA     | AA        | C    |
+| Lowery    | Inga     |           | AA     | AA        | C    |
+| Bullock   | Isidro   | AA        | AA     | AA        | C    |
+| Sweeney   | Sandee   |           | AA     | AA        | C    |
+| Goff      | Lean     | AA        | AA     | AA        | C    |
+| Tran      | Adriane  | AA        | AA     | AA        | C    |
+| Battle    | Loretta  |           | B      | B         | C    |
+|-----------+----------+-----------+--------+-----------+------|
+
+the =pref-rank= and =andrea= models perform similarly, and marginally
+better than the benchmark
