@@ -29,7 +29,7 @@ better than the benchmark
 
 
 
-students-winter.csv 
+* students-winter.csv 
 |----------+--------------+-----------+--------+-----------+------|
 |          |              | benchmark | andrea | pref-rank | evil |
 |----------+--------------+-----------+--------+-----------+------|
@@ -57,3 +57,32 @@ students-winter.csv
 here, the difference between =pref-rank= and =andrea= becomes a little
 more clear... basically, it's a question of how 'good' an 'A' is vs
 how 'bad' a 'C' is.  also... Lean Holt can't lose!
+
+
+
+* students-spring.csv
+|------------+-------------------+-----------+--------+-----------+------|
+|            |                   | benchmark | andrea | pref-rank | evil |
+|------------+-------------------+-----------+--------+-----------+------|
+| Clements   | Ava               | A         | A      | A         | B    |
+| Horn       | Starr             | A         | A      | A         | C    |
+| Frazier    | Adriane           | AA        | AA     | AA        | C    |
+| Crosby     | Phebe             | A         | A      | A         | C    |
+| Carroll    | Mariam            | A         | A      | A         | B    |
+| Burks      | Seymour           | A         | A      | A         | B    |
+| Gregory    | Luther            | AA        | AA     | AA        | C    |
+| Mcguire    | Tarsha            | AA        | AA     | AA        | C    |
+| Fitzgerald | Tomi              | A         | A      | A         | B    |
+| Floyd      | Britt             | A         | A      | A         | C    |
+| Dean       | Shirlene  Charles | A         | A      | A         | B    |
+| Blevins    | Phebe             | A         | A      | A         | C    |
+| Dejesus    | Lurlene           | AA        | AA     | AA        | C    |
+| Dennis     | Blair             | AA        | AA     | AA        | C    |
+| Stokes     | Hollie            | B         | B      | B         | B    |
+| Rivers     | Stacie            | AA        | AA     | AA        | C    |
+| Mcintyre   | Brittni           | AA        | AA     | AA        | C    |
+| Cash       | Adele             | A         | A      | A         | C    |
+|------------+-------------------+-----------+--------+-----------+------|
+
+=pref-rank= and =andrea= models perform similarly, and reproduce the
+benchmark
