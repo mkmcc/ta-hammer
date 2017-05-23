@@ -1,54 +1,59 @@
 test results comparing different happiness models:
 
 
-students-fall.csv
-|-----------+----------+------------+--------+-----------+------|
-|           |          |            | andrea | pref-rank | evil |
-|-----------+----------+------------+--------+-----------+------|
-| Austin    | Celena   | Engl 15    | A      | A         | C    |
-| Santos    | Celena   | ENGL 101   | B      | A         | C    |
-| Warren    | Starr    | Engl 103A  | AA     | AA        | C    |
-| Hodge     | Sylvie   | Engl 25    | A      | B         | C    |
-| Rodriquez | Yuki     | Engl 10    | A      | A         | C    |
-| Schmidt   | Lecia    | ENGL 101   | AA     | AA        | C    |
-| Bradley   | Madeline | Engl 133SO | AA     | AA        | C    |
-| Phillips  | Gwyneth  | Engl 133SO | A      | A         | C    |
-| Graves    | Celena   | Engl 10    | B      | B         | C    |
-| Phelps    | Briana   | ENGL 101   | AA     | AA        | C    |
-| England   | Hollie   | Engl 22    | AA     | AA        | C    |
-| Lowery    | Inga     | Engl 25    | AA     | AA        | C    |
-| Bullock   | Isidro   | Engl 133SO | AA     | AA        | C    |
-| Sweeney   | Sandee   | Engl 25    | AA     | AA        | C    |
-| Goff      | Lean     | Engl 103A  | AA     | AA        | C    |
-| Tran      | Adriane  | Engl 133SO | AA     | AA        | C    |
-| Battle    | Loretta  | Engl 15    | B      | B         | C    |
-|-----------+----------+------------+--------+-----------+------|
+* students-fall.csv
+|-----------+----------+-----------+--------+-----------+------|
+|           |          | benchmark | andrea | pref-rank | evil |
+|-----------+----------+-----------+--------+-----------+------|
+| Austin    | Celena   | A         | A      | A         | C    |
+| Santos    | Celena   | B         | B      | A         | C    |
+| Warren    | Starr    | AA        | AA     | AA        | C    |
+| Hodge     | Sylvie   | B         | A      | B         | C    |
+| Rodriquez | Yuki     | A         | A      | A         | C    |
+| Schmidt   | Lecia    | AA        | AA     | AA        | C    |
+| Bradley   | Madeline | AA        | AA     | AA        | C    |
+| Phillips  | Gwyneth  | A         | A      | A         | C    |
+| Graves    | Celena   | AA        | B      | B         | C    |
+| Phelps    | Briana   | AA        | AA     | AA        | C    |
+| England   | Hollie   | B         | AA     | AA        | C    |
+| Lowery    | Inga     |           | AA     | AA        | C    |
+| Bullock   | Isidro   | AA        | AA     | AA        | C    |
+| Sweeney   | Sandee   |           | AA     | AA        | C    |
+| Goff      | Lean     | AA        | AA     | AA        | C    |
+| Tran      | Adriane  | AA        | AA     | AA        | C    |
+| Battle    | Loretta  |           | B      | B         | C    |
+|-----------+----------+-----------+--------+-----------+------|
+
+=pref-rank= and =andrea= models perform similarly, and marginally
+better than the benchmark
 
 
 
 students-winter.csv 
 |----------+--------------+-----------+--------+-----------+------|
-|          |              |           | andrea | pref-rank | evil |
+|          |              | benchmark | andrea | pref-rank | evil |
 |----------+--------------+-----------+--------+-----------+------|
-| Rush     | Cheri        | Engl 193  | A      | A         | C    |
-| Adkins   | Velvet       | Engl 104B | A      | C         | C    |
-| Vasquez  | Lean         | Engl 104B | AA     | AA        | C    |
-| Gamble   | Seymour      | Engl 18   | A      | A         | C    |
-| Mccarthy | Phebe        | Engl 10   | A      | A         | C    |
-| Tyler    | Cheri        | Engl 102  | AA     | AA        | B    |
-| Sheppard | Isidro       | Engl 102  | B      | C         | C    |
-| Banks    | Adriane      | Engl 193  | A      | A         | C    |
-| Avery    | Sylvie       | Engl 104B | A      | C         | C    |
-| Watson   | Britt        | Engl 18   | A      | A         | C    |
-| Allen    | Etha Charles | Engl 105A | B      | A         | C    |
-| Morgan   | Sydney       | Engl 104B | AA     | AA        | C    |
-| Hill     | Sylvie       | Engl 10   | A      | A         | C    |
-| Mathews  | Yuki         | Engl 193  | B      | AA        | C    |
-| Church   | Ermelinda    | Engl 102  | AA     | AA        | C    |
-| Holt     | Lean         | Engl 105A | A      | A         | A    |
-| Wilder   | Luther       | Engl 102  | AA     | AA        | C    |
-| Winters  | Lecia        | Engl 10   | A      | AA        | C    |
-| Tate     | Ermelinda    | Engl 105A | B      | A         | C    |
+| Rush     | Cheri        | AA        | A      | A         | C    |
+| Adkins   | Velvet       | C         | A      | C         | C    |
+| Vasquez  | Lean         | AA        | AA     | AA        | C    |
+| Gamble   | Seymour      | B         | A      | A         | C    |
+| Mccarthy | Phebe        | A         | A      | A         | C    |
+| Tyler    | Cheri        | AA        | AA     | AA        | B    |
+| Sheppard | Isidro       | AA        | B      | C         | C    |
+| Banks    | Adriane      | B         | A      | A         | C    |
+| Avery    | Sylvie       | A         | A      | C         | C    |
+| Watson   | Britt        | C         | A      | A         | C    |
+| Allen    | Etha Charles | A         | B      | A         | C    |
+| Morgan   | Sydney       | B         | AA     | AA        | C    |
+| Hill     | Sylvie       | A         | A      | A         | C    |
+| Mathews  | Yuki         | AA        | B      | AA        | C    |
+| Church   | Ermelinda    | AA        | AA     | AA        | C    |
+| Holt     | Lean         | B         | A      | A         | A    |
+| Wilder   | Luther       | AA        | AA     | AA        | C    |
+| Winters  | Lecia        | A         | A      | AA        | C    |
+| Tate     | Ermelinda    | A         | B      | A         | C    |
 |----------+--------------+-----------+--------+-----------+------|
 
-Lean Holt can't lose!
+here, the difference between =pref-rank= and =andrea= becomes a little
+more clear... basically, it's a question of how 'good' an 'A' is vs
+how 'bad' a 'C' is.  also... Lean Holt can't lose!
