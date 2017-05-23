@@ -65,6 +65,7 @@ if np.sum(nassignments) != data.shape[0]:
     print "Number of students {0} not equal to number of assignments {1}".format(np.sum(nassignments), data.shape[0])
     sys.exit(1)
 
+# TODO: this is a bit hackish...
 cols = np.transpose(data)
 data = [ ([cols[i].tolist()] * nassignments[i]) for i in range(cols.shape[0]) ]
 data = np.transpose(np.vstack(data))
@@ -92,6 +93,8 @@ vfunc = np.vectorize(score_to_score)
 student_preferences = vfunc(data)
 courses = np.arange(data.shape[0])
 
+# duplicate entries in the course_names array based on the number of
+# TA slots
 course_names2 = [ ([course_names[i]] * nassignments[i]) for i in range(cols.shape[0]) ]
 course_names2 = reduce(lambda x,y: x+y, course_names2)
 course_names = np.asarray(course_names2)
