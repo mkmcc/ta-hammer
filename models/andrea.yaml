@@ -1,0 +1,11 @@
+# defived from pref-rank.yaml, but try to prevent C's, even at the
+# expense of a few A's
+{
+    'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
+    'X'   :  -10.0,
+    'C'   :   -5.0,    # basically guarantee nobody gets a 'C' (at the expense of 8.5 A's)
+    'B'   :    0.17,
+    'A'   :    0.75,
+    'AA'  :    1.5,    # pretty please? (eg, had bad luck last time; deserve a bump)
+    'AAA' :  100.0     # absolutely guaranteed
+}

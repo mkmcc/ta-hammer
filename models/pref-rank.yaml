@@ -1,0 +1,10 @@
+# from https://en.wikipedia.org/wiki/Preference-rank_translation
+{
+    'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
+    'X'   :  -10.0,
+    'C'   :    0.0,
+    'B'   :    0.17,
+    'A'   :    0.75,
+    'AA'  :    1.5,    # pretty please? (eg, had bad luck last time; deserve a bump)
+    'AAA' :  100.0     # absolutely guaranteed
+}

@@ -3,6 +3,7 @@
 import numpy as np
 import sys
 
+from ast import literal_eval
 from optparse import OptionParser
 
 
@@ -16,6 +17,11 @@ parser = OptionParser(usage)
 parser.add_option("-f", "--file",
                   action="store", type="string", dest="filename",
                   help="read data from FILENAME")
+
+parser.add_option("-m", "--model",
+                  action="store", type="string", dest="modelname",
+                  default="models/andrea.yaml",
+                  help="read happiness model from FILENAME")
 
 parser.add_option("-v", "--verbose",
                   action="store_true", dest="verbose")
@@ -36,6 +42,14 @@ if options.verbose:
 ## utility functions
 def not_contains(a, elem):
     return np.intersect1d(a, elem).shape[0] == 0
+
+def yaml_to_dict(filename):
+    inf = open(filename,'r')
+    model = literal_eval(inf.read())
+    inf.close()
+
+    return model
+##
 ################################################################################
 
 
@@ -71,16 +85,8 @@ data = [ ([cols[i].tolist()] * nassignments[i]) for i in range(cols.shape[0]) ]
 data = np.transpose(np.vstack(data))
 
 
-## convert Andrea's codes to numeric values (TODO: tweak!)
-pref_mapping = {
-    'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
-    'X'   :  -10.0,
-    'C'   :   -5.0,
-    'B'   :    0.17,
-    'A'   :    0.75,
-    'AA'  :    1.5,    # pretty please? (eg, had bad luck last time; deserve a bump)
-    'AAA' :  100.0     # absolutely guaranteed
-}
+## convert Andrea's codes to numeric values
+pref_mapping = yaml_to_dict(options.modelname)
 
 def score_to_score(letter):
     return pref_mapping[letter]

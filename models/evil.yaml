@@ -1,0 +1,9 @@
+# mwahaha
+{
+    'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
+    'X'   :  -10.0,
+    'C'   :   10.0,    # basically guarantee everyone gets a 'C'
+    'B'   :    0.17,
+    'A'   :   -1.75,
+    'AA'  :   -1.5
+}
