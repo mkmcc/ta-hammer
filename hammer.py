@@ -28,7 +28,7 @@ parser.add_option("-v", "--verbose",
 
 (options, args) = parser.parse_args(sys.argv)
 
-if len(args) != 1:
+if options.filename == None:
     parser.error("incorrect number of arguments")
 if options.verbose:
     print("reading %s..." % options.filename)
