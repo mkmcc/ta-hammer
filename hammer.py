@@ -26,12 +26,18 @@ parser.add_option("-m", "--model",
 parser.add_option("-v", "--verbose",
                   action="store_true", dest="verbose")
 
+parser.add_option("-q", "--quiet",
+                  action="store_true", dest="verbose")
+
 (options, args) = parser.parse_args(sys.argv)
 
 if options.filename == None:
     parser.error("incorrect number of arguments")
+
 if options.verbose:
-    print("reading %s..." % options.filename)
+    print "reading student preferences from {0}...".format(options.filename)
+    print "using happiness model {0}...".format(options.modelname)
+    print " "
 
 ##
 ################################################################################
@@ -70,6 +76,14 @@ course_names  = header[2:]
 nassignments  = nassignments[2:]
 student_names = data[:,0:2]
 data          = data[:,2:]
+
+
+if options.verbose:
+    print "course names:"
+    print course_names
+    print "number of TA slots per course:"
+    print nassignments
+    print " "
 
 
 # duplicate course columns by the number of TA slots for that course
