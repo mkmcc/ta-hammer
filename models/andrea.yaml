@@ -1,4 +1,4 @@
-# defived from pref-rank.yaml, but try to prevent C's, even at the
+# derived from pref-rank.yaml, but try to prevent C's, even at the
 # expense of a few A's
 {
     'XXX' : -100.0,    # absolutely prohibited (eg, restraining order)
