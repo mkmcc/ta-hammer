@@ -17,12 +17,14 @@ usage = "usage: %prog -f student-preferences.csv"
 parser = OptionParser(usage)
 
 parser.add_option("-f", "--file",
-                  action="store", type="string", dest="filename",
+                  dest="filename",
+                  action="store", type="string",
                   help="read data from FILENAME")
 
 parser.add_option("-m", "--model",
-                  action="store", type="string", dest="modelname",
+                  dest="modelname",
                   default="models/andrea.yaml",
+                  action="store", type="string",
                   help="read happiness model from FILENAME")
 
 parser.add_option("-v", "--verbose",
@@ -48,15 +50,20 @@ if options.verbose:
 
 ################################################################################
 ## utility functions
+
 def not_contains(a, elem):
     return np.intersect1d(a, elem).shape[0] == 0
 
+# YAML happens to have a format which is compatible with python
+# dictionaries.  we can simply evaluate it as python code.
+#
 def yaml_to_dict(filename):
     inf = open(filename,'r')
     model = literal_eval(inf.read())
     inf.close()
 
     return model
+
 ##
 ################################################################################
 
@@ -106,10 +113,10 @@ except:
     sys.exit(1)
 
 if np.sum(nassignments) != data.shape[0]:
-    print "Number of students {0} not equal to number of assignments {1}".format(np.sum(nassignments), data.shape[0])
+    print "ERROR: number of students ({0}) not equal to number of assignments ({1})".format(np.sum(nassignments), data.shape[0])
     sys.exit(1)
 
-# TODO: this is a bit hackish...
+# TODO: this is a bit hackish... can i write it more clearly?
 cols = np.transpose(data)
 data = [ ([cols[i].tolist()] * nassignments[i]) for i in range(cols.shape[0]) ]
 data = np.transpose(np.vstack(data))
@@ -136,8 +143,10 @@ vfunc = np.vectorize(score_to_score)
 student_preferences = vfunc(data)
 courses = np.arange(data.shape[0])
 
+
 # duplicate entries in the course_names array based on the number of
 # TA slots
+# TODO: can i write this more clearly?
 course_names2 = [ ([course_names[i]] * nassignments[i]) for i in range(cols.shape[0]) ]
 course_names2 = reduce(lambda x,y: x+y, course_names2)
 course_names = np.asarray(course_names2)
