@@ -6,6 +6,8 @@ import sys
 from ast import literal_eval
 from optparse import OptionParser
 
+import os.path
+
 
 
 ################################################################################
@@ -64,9 +66,17 @@ def yaml_to_dict(filename):
 ## import student preference data
 ## TODO: this is fragile, and assumes correct input
 
-data = np.loadtxt(options.filename,
-                  delimiter=',',
-                  dtype=np.dtype((str, 256)))
+try:
+    data = np.loadtxt(options.filename,
+                      delimiter=',',
+                      dtype=np.dtype((str, 256)))
+except:
+    print "ERROR: reading '{0}'".format(options.filename)
+    if not os.path.isfile(options.filename):
+        print "       file '{0}' not found".format(options.filename)
+    else:
+        print "       file '{0}' is not a valid CSV file".format(options.filename)
+    sys.exit(1)
 
 header        = data[0]
 nassignments  = data[1]
@@ -87,7 +97,13 @@ if options.verbose:
 
 
 # duplicate course columns by the number of TA slots for that course
-nassignments = nassignments.astype(np.int)
+try:
+    nassignments = nassignments.astype(np.int)
+except:
+    print "ERROR: invalid number of TA slots encountered in second row of {0}".format(options.filename)
+    print nassignments
+    print "should all be integers"
+    sys.exit(1)
 
 if np.sum(nassignments) != data.shape[0]:
     print "Number of students {0} not equal to number of assignments {1}".format(np.sum(nassignments), data.shape[0])
@@ -103,9 +119,16 @@ data = np.transpose(np.vstack(data))
 pref_mapping = yaml_to_dict(options.modelname)
 
 def score_to_score(letter):
-    return pref_mapping[letter]
+    try:
+        return pref_mapping[letter]
+    except:
+        print "invalid score '{0}' found in preference file {1}".format(letter, options.filename)
+        print "values allowed by happiness model {0}:".format(options.modelname)
+        print [ key for key,value in pref_mapping.items() ]
+        sys.exit(1)
 
 def score_to_score_inv(score):
+    # score should be valid if it gets to this point
     key = next(key for key, value in pref_mapping.items() if value == score)
     return key
 
